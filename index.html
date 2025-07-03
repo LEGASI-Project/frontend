@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGASI - Ladies Empowerment Goals and Support Initiative</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6a0dad;
+            --primary-light: #8a4dcc;
+            --primary-dark: #4b0082;
+            --secondary: #ffffff;
+            --light: #f8f0ff;
+            --dark: #1a0a2e;
+            --gray: #e6e6fa;
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8f0ff 0%, #e6e6fa 100%);
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animation Classes */
+        .hidden {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease;
+        }
+
+        .show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 30px rgba(106, 13, 173, 0.2);
+        }
+
+        .header.scrolled {
+            padding: 7px 5%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 90px;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-img img {
+            height: 200%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text h1 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .logo-text span {
+            color: var(--primary);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 15px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.0rem;
+            position: relative;
+            padding: 10px 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            border-radius: 3px;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-dark);
+        }
+
+        .login-btn-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(106, 13, 173, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .login-btn-header:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .login-btn-header:hover:before {
+            left: 10;
+        }
+
+        .login-btn-header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(40, 32, 45, 0.6);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+        
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1;
+            top: 100%;
+            left: 0;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: var(--primary-dark);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .dropdown-content a:hover {
+            background: var(--primary-light);
+            color: white;
+            padding-left: 20px;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        
+        .dropdown:hover > a {
+            color: var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(26, 10, 46, 0.8) 0%, rgba(106, 13, 173, 0.6) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.0rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--secondary) 0%, #ffb700 100%);
+            color: var(--dark);
+            box-shadow: 0 5px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-primary:before {
+            background: linear-gradient(135deg, #e9e9e7 0%, var(--secondary) 100%);
+        }
+
+        .btn-primary:hover:before {
+            left: 0;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        /* News Ticker */
+        .news-ticker {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(26, 10, 46, 0.9);
+            padding: 15px 0;
+            overflow: hidden;
+            border-top: 2px solid var(--secondary);
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .ticker-container {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        .ticker-label {
+            background: var(--secondary);
+            color: var(--dark);
+            padding: 8px 20px;
+            font-weight: 700;
+            border-radius: 0 30px 30px 0;
+            margin-right: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: ticker 25s linear infinite;
+            padding-left: 100%;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            margin: 0 40px;
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .ticker-item i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+
+        @keyframes ticker {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* About Section */
+        .section {
+            padding: 120px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: var(--secondary);
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            color: #555;
+            max-width: 800px;
+            margin: 30px auto 0;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 70px;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            height: 450px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.15);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--primary-dark);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        /* Vision, Mission, Values Section */
+        .values-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+
+        .values-card {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.15);
+            transition: var(--transition);
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .values-card:hover {
+            transform: translateY(-15px) rotateY(5deg);
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.25);
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            padding: 30px;
+            text-align: center;
+        }
+
+        .card-header i {
+            font-size: 3.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .card-body {
+            padding: 30px;
+            position: relative;
+        }
+
+        .card-body p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .values-card:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .values-card:hover:after {
+            height: 8px;
+        }
+
+        /* Activities Section */
+        .activities {
+            background: linear-gradient(135deg, var(--light) 0%, #f0e6ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .activities:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236a0dad' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .activity-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.2);
+        }
+
+        .activity-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .activity-img:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(90, 3, 152, 0.7), transparent);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .activity-card:hover .activity-img:before {
+            opacity: 1;
+        }
+
+        .activity-content {
+            padding: 30px;
+            position: relative;
+        }
+
+        .activity-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .activity-content p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .learn-more {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .learn-more:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Blog Section */
+        .blog-section {
+            background: linear-gradient(135deg, #f0e6ff 0%, #e6d6ff 100%);
+            padding: 100px 5%;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.2);
+        }
+
+        .blog-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .blog-date {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-meta {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .blog-meta i {
+            margin-right: 5px;
+            color: var(--primary);
+        }
+
+        .blog-meta span {
+            margin-right: 15px;
+        }
+
+        .blog-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-dark);
+        }
+
+        .blog-content p {
+            color: #555;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--primary-dark);
+            transform: translateX(5px);
+        }
+
+        /* Team Section */
+        .team {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--light) 0%, #f0e6ff 100%);
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(106, 13, 173, 0.2);
+        }
+
+        .team-img {
+            height: 350px;
+            background-size: cover;
+            background-position: top center;
+            position: relative;
+        }
+
+        .team-content {
+            padding: 25px;
+            text-align: center;
+            background: var(--primary);
+            color: white;
+        }
+
+        .team-content h3 {
+            font-size: 1.7rem;
+            margin-bottom: 5px;
+        }
+
+        .team-content p {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .team-content .socials {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .team-content .socials a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .team-content .socials a:hover {
+            background: var(--secondary);
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: linear-gradient(135deg, #f0e6ff 0%, #e6d6ff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(106, 13, 173, 0.1);
+            transition: var(--transition);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 10px 30px rgba(106, 13, 173, 0.2);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 30px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 30px 25px;
+            max-height: 500px;
+        }
+
+        /* Auto-play Carousel Section - Now with 6 slides */
+        .carousel-section {
+            padding: 100px 5%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .carousel-slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 50px;
+            position: relative;
+        }
+
+        .carousel-slide:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(26, 10, 46, 0.9), transparent);
+        }
+
+        .carousel-content {
+            position: relative;
+            z-index: 2;
+            color: white;
+            max-width: 700px;
+        }
+
+        .carousel-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .carousel-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .carousel-indicator {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .carousel-indicator.active {
+            background: var(--secondary);
+            transform: scale(1.2);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .carousel-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .carousel-prev {
+            left: 30px;
+        }
+
+        .carousel-next {
+            right: 30px;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            overflow: hidden;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-content {
+            max-width: 800px;
+            padding: 30px;
+            color: white;
+            z-index: 2;
+        }
+
+        .video-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 30px;
+        }
+
+        .video-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+        
+        /* Partners Section */
+        .partners-section {
+            padding: 80px 5%;
+            background: var(--light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .partners-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%236a0dad' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+        
+        .partners-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .partners-title:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .partners-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .partner-logo {
+            width: 180px;
+            height: 100px;
+            background: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .partner-logo:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(106, 13, 173, 0.2);
+        }
+        
+        .partner-logo img {
+            max-width: 100%;
+            max-height: 70px;
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+        }
+        
+        .partner-logo:hover img {
+            filter: grayscale(0%);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 5% 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd700' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.1;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-col h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-light);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a i {
+            color: var(--secondary);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-socials a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--secondary);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        .footer-socials a:hover {
+            background: var(--secondary);
+            color: var(--dark);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Buttons */
+        .section-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 35px;
+            background: var(--primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(106, 13, 173, 0.3);
+        }
+
+        .section-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 13, 173, 0.4);
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .video-content h2 {
+                font-size: 3rem;
+            }
+
+            .carousel-content h3 {
+                font-size: 2rem;
+            }
+            
+            .partners-container {
+                gap: 30px;
+            }
+            
+            .partner-logo {
+                width: 150px;
+                height: 85px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                background: white;
+                width: 280px;
+                height: calc(100vh - 80px);
+                flex-direction: column;
+                padding: 40px 30px;
+                transition: var(--transition);
+                z-index: 1000;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+
+            .ticker-item {
+                font-size: 1rem;
+                margin: 0 20px;
+            }
+            
+            .video-content h2 {
+                font-size: 2.5rem;
+            }
+            
+            .video-content p {
+                font-size: 1.1rem;
+            }
+
+            .carousel-container {
+                height: 400px;
+            }
+
+            .carousel-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                display: none;
+                width: 100%;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: none;
+            }
+            
+            .dropdown.active .dropdown-content {
+                display: block;
+            }
+            
+            .partners-container {
+                gap: 20px;
+            }
+            
+            .partner-logo {
+                width: 130px;
+                height: 75px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .section {
+                padding: 80px 5%;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .ticker-label {
+                padding: 6px 15px;
+                font-size: 0.9rem;
+            }
+
+            .ticker-item {
+                font-size: 0.9rem;
+            }
+            
+            .video-content h2 {
+                font-size: 2rem;
+            }
+            
+            .video-content p {
+                font-size: 1rem;
+            }
+
+            .carousel-container {
+                height: 350px;
+            }
+
+            .carousel-content {
+                padding: 20px;
+            }
+
+            .carousel-content h3 {
+                font-size: 1.6rem;
+            }
+
+            .carousel-content p {
+                font-size: 1rem;
+            }
+            
+            .partners-title {
+                font-size: 2.2rem;
+            }
+            
+            .partners-container {
+                gap: 15px;
+            }
+            
+            .partner-logo {
+                width: 110px;
+                height: 65px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <div class="logo-img">
+                <img src="recheck logo.png" alt="LEGASI Logo">
+            </div>
+            <div class="logo-text">
+                <h1></h1>
+                <span></span>
+            </div>
+        </div>
+        
+        <button class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#activities">Activities</a></li>
+            <li><a href="#blog">Blog</a></li>
+           
+           
+            <li class="dropdown">
+                <a href="#">Resources <i class="fas fa-caret-down"></i></a>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fas fa-eye"></i> View Resources</a>
+                    <a href="#"><i class="fas fa-download"></i> Download Resources</a>
+                </div>
+            </li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        
+        <a href="login.html" class="login-btn-header" id="loginBtn">Login</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <video autoplay muted loop class="hero-video">
+            <source src="herosec.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h1>Welcome to Ladies Empowerment Goals and Support initiative</h1>
+                <p>LEGASI is a women-led, community-based NGO empowering conflict-affected communities. We advance Women's/Youth Peace & Security through dialogue, mediation, psychosocial support, and livelihood initiatives.</p>
+                <div class="hero-btns">
+                    <a href="#donate" class="btn btn-primary">Donate Now</a>
+                    <a href="#about" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- News Ticker -->
+        <div class="news-ticker">
+            <div class="ticker-container">
+                <div class="ticker-label">Latest Updates</div>
+                <div class="ticker-content">
+                    <span class="ticker-item"><i class="fas fa-bullhorn"></i> New partnership with USAID announced for peace initiatives</span>
+                    <span class="ticker-item"><i class="fas fa-calendar"></i> Community dialogue in Plateau State scheduled for June 30</span>
+                    <span class="ticker-item"><i class="fas fa-award"></i> LEGASI wins 2024 Peacebuilding Excellence Award</span>
+                    <span class="ticker-item"><i class="fas fa-users"></i> 120 women trained in conflict resolution last month</span>
+                    <span class="ticker-item"><i class="fas fa-book"></i> New research paper on interfaith mediation published</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>About LEGASI</h2>
+            <p>Inspired by a vision of a peaceful and empowered community free from violence and hate</p>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-image hidden">
+                <img src="DSC_0055.JPG" alt="LEGASI Team">
+            </div>
+            
+            <div class="about-text hidden">
+                <h3>Our Journey Towards Empowerment</h3>
+                <p>LEGASI (Ladies Empowerment Goals and Support Initiative) was founded in 2010 with a mission to empower women and promote peace in conflict-affected communities across Nigeria. Our organization emerged as a response to the increasing violence and discrimination faced by women in northern Nigeria.</p>
+                
+                <p>Over the past decade, we've grown from a small community initiative to a nationally recognized organization with programs in 12 states. Our approach combines grassroots engagement with evidence-based strategies to address the root causes of conflict and inequality.</p>
+                
+                <!-- Added "Read More" button -->
+                <div class="btn-container">
+                    <a href="#" class="section-button">Read More About Us</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Vision, Mission, Values -->
+        <div class="values-container">
+            <div class="values-card hidden">
+                <div class="card-header">
+                    <i class="fas fa-eye"></i>
+                    <h3>Our Vision</h3>
+                </div>
+                <div class="card-body">
+                    <p>"A peaceful and empowered community free from violence and hate"</p>
+                    <p>We envision Nigerian communities where diversity is celebrated, conflicts are resolved through dialogue, and all members have equal opportunities to thrive regardless of gender, ethnicity, or religion.</p>
+                </div>
+            </div>
+            
+            <div class="values-card hidden">
+                <div class="card-header">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Mission</h3>
+                </div>
+                <div class="card-body">
+                    <p>"To promote peaceful co-existence in communities through effective community dialogue and mediation, evidence-based advocacy, political and socio-economic empowerment"</p>
+                    <p>We work directly with communities to build sustainable peace through locally-driven solutions and empowerment programs that address both immediate needs and long-term systemic change.</p>
+                </div>
+            </div>
+  <div class="values-card hidden">
+                <div class="card-header">
+                    <i class="fas fa-bullseye"></i>
+                    <h3>Our Objectives</h3>
+                </div>
+                <div class="card-body">
+                    <p> Raise awareness on education, reproductive health, and poverty alleviation for young women and girls, providing age-appropriate sex education and prevention strategies for teen pregnancies and underage marriages.</p>
+                    <p>Offer skill acquisition, ICT training, mentoring, and support networks to help girls and women achieve financial independence.</p>
+                </div>
+            </div>
+            <div class="values-card hidden">
+                <div class="card-header">
+                    <i class="fas fa-heart"></i>
+                    <h3>Core Values</h3>
+                </div>
+                <div class="card-body">
+                    <p><strong>Integrity:</strong> We maintain the highest ethical standards in all our operations.</p>
+                    <p><strong>Accountability:</strong> We take responsibility for our actions and their impact.</p>
+                    <p><strong>Transparency:</strong> We operate openly and share information about our work.</p>
+                    <p><strong>Inclusivity:</strong> We embrace diversity and ensure all voices are heard.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="section activities" id="activities">
+        <div class="section-title">
+            <h2>Our Activities</h2>
+            <p>Our approach to building sustainable peace in Nigerian communities</p>
+        </div>
+        
+        <div class="activities-grid">
+            <div class="activity-card hidden">
+                <div class="activity-img" style="background-image: url('DSC_0055.JPG');"></div>
+                <div class="activity-content">
+                    <h3>Community Dialogue</h3>
+                    <p>Facilitating community dialogues to resolve conflicts and build understanding between diverse groups. We bring together community leaders, women, and youth to discuss issues and find common ground.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="activity-card hidden">
+                <div class="activity-img" style="background-image: url('gallary3\ \(1\).jpeg');"></div>
+                <div class="activity-content">
+                    <h3>Trauma Counseling</h3>
+                    <p>Providing psychological support to victims of violent conflicts to help them heal and rebuild their lives. Our trained counselors work with individuals and groups to address trauma and promote resilience.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="activity-card hidden">
+                <div class="activity-img" style="background-image: url('our\ act.jpeg');"></div>
+                <div class="activity-content">
+                    <h3>Economic Empowerment</h3>
+                    <p>Supporting victims of violent conflicts who lost their sources of livelihood with financial assistance and vocational training. We provide startup grants and business training to help rebuild lives.</p>
+                    <a href="#" class="learn-more">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="section blog-section" id="blog">
+        <div class="section-title">
+            <h2>Latest News & Events</h2>
+            <p>Stay updated with our activities and upcoming events</p>
+        </div>
+        
+        <div class="blog-grid">
+            <div class="blog-card hidden">
+                <div class="blog-image" style="background-image: url('gallary3\ \(3\).jpeg');">
+                    <div class="blog-date">June 15, 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Kaduna</span>
+                        <span><i class="fas fa-clock"></i> 10:00 AM</span>
+                    </div>
+                    <h3>Community Peace Dialogue Workshop</h3>
+                    <p>Join us for a transformative workshop bringing together women leaders from diverse communities to discuss peacebuilding strategies.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="blog-card hidden">
+                <div class="blog-image" style="background-image: url(gallary3\ \(2\).JPG);">
+                    <div class="blog-date">May 28, 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Plateau</span>
+                        <span><i class="fas fa-clock"></i> 9:00 AM</span>
+                    </div>
+                    <h3>Vocational Training Graduation</h3>
+                    <p>Celebrating the graduation of 45 women from our 3-month vocational training program in tailoring and business management.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="blog-card hidden">
+                <div class="blog-image" style="background-image: url('gallary3\ \(1\).JPG');">
+                    <div class="blog-date">May 15, 2024</div>
+                </div>
+                <div class="blog-content">
+                    <div class="blog-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Online</span>
+                        <span><i class="fas fa-clock"></i> 2:00 PM</span>
+                    </div>
+                    <h3>Webinar: Women in Peacebuilding</h3>
+                    <p>Our executive director shares insights on the critical role of women in conflict resolution and peacebuilding efforts.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Added "Read More Stories" button -->
+        <div class="btn-container">
+            <a href="#" class="section-button">Read More Stories</a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Find answers to common questions about our work and how you can get involved</p>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item hidden">
+                <div class="faq-question">
+                    How does LEGASI select communities to work with?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We prioritize communities based on several factors: level of conflict intensity, presence of vulnerable populations (especially women and children), community willingness to engage in peacebuilding, and potential for sustainable impact. Our selection process involves extensive research, community consultations, and partnership with local authorities.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item hidden">
+                <div class="faq-question">
+                    What types of vocational training do you provide?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Our vocational training programs are tailored to local economic opportunities and include: tailoring and fashion design, agriculture and agro-processing, soap and cosmetic production, ICT skills, small business management, and craft-making. Each program includes business development training to help participants establish sustainable income sources.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item hidden">
+                <div class="faq-question">
+                    How can I volunteer with LEGASI?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We welcome volunteers with diverse skills. Opportunities include: field program support, capacity building trainers, administrative assistance, fundraising specialists, and technical experts. Please visit our Volunteer page to see current openings and application requirements. All volunteers undergo background checks and orientation training.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item hidden">
+                <div class="faq-question">
+                    How transparent is LEGASI with donations?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Transparency is a core value. We publish annual reports with detailed financial statements, program outcomes, and impact assessments. Donors receive regular updates on how their contributions are used. We're also certified by the Nigerian Financial Intelligence Unit (SCUML) and maintain the highest standards of financial accountability.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item hidden">
+                <div class="faq-question">
+                    How do you measure the impact of your programs?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We use a comprehensive monitoring and evaluation framework that tracks both quantitative and qualitative indicators. These include: number of conflicts resolved, economic indicators for participants, pre/post assessments of trauma symptoms, community perception surveys, and longitudinal studies on peace sustainability. All reports are publicly available on our website.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auto-play Carousel Section - Now with 6 slides -->
+    <section class="carousel-section" id="carousel">
+        <div class="section-title" style="color: white;">
+            <h2 style="background: linear-gradient(to right, #ffffff, #e0c3ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Impact Stories</h2>
+            <p style="color: rgba(255, 255, 255, 0.8);">Real stories of transformation from communities we serve</p>
+        </div>
+        
+        <div class="carousel-container">
+            <div class="carousel-slides">
+                <div class="carousel-slide" style="background-image: url('our\ act.jpg');">
+                    <div class="carousel-content">
+                        <h3>Peace in Plateau State</h3>
+                        <p>After years of conflict, LEGASI facilitated dialogues between farming and herding communities in Plateau State. Today, joint economic initiatives have replaced violence with cooperation.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('our\ act.jpeg');">
+                    <div class="carousel-content">
+                        <h3>Women's Cooperative Success</h3>
+                        <p>Amina's tailoring cooperative started with LEGASI seed funding now employs 25 women and supplies uniforms to local schools, transforming their economic prospects.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('our\ act\ 34.jpeg');">
+                    <div class="carousel-content">
+                        <h3>Youth Mediation Program</h3>
+                        <p>Our youth peace ambassador program has trained over 500 young people in conflict resolution, reducing school violence by 70% in participating communities.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+                <!-- Additional slides for 6 total -->
+                <div class="carousel-slide" style="background-image: url('opa.jpg');">
+                    <div class="carousel-content">
+                        <h3>Education for All</h3>
+                        <p>We established learning centers in conflict-affected areas, providing education to over 800 children who had no access to schools due to violence.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url(our\ act.jpg');">
+                    <div class="carousel-content">
+                        <h3>Healthcare Outreach</h3>
+                        <p>Our mobile clinics provided essential healthcare services to 5,000 residents in remote conflict zones where medical facilities were destroyed.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+                <div class="carousel-slide" style="background-image: url('gallary3\ \(3\).jpeg');">
+                    <div class="carousel-content">
+                        <h3>Water for Communities</h3>
+                        <p>We rehabilitated water systems serving 12 communities, ending conflicts over water resources and reducing waterborne diseases by 60%.</p>
+                        <a href="#" class="btn btn-primary">Read Full Story</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav carousel-prev">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div class="carousel-nav carousel-next">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+            
+            <div class="carousel-indicators">
+                <div class="carousel-indicator active"></div>
+                <div class="carousel-indicator"></div>
+                <div class="carousel-indicator"></div>
+                <div class="carousel-indicator"></div>
+                <div class="carousel-indicator"></div>
+                <div class="carousel-indicator"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section team" id="team">
+        <div class="section-title">
+            <h2>Our Key Personnel</h2>
+            <p>Meet the dedicated team driving LEGASI's mission forward</p>
+        </div>
+        
+        <div class="team-grid">
+            <div class="team-card hidden">
+                <div class="team-img" style="background-image: url('ladies\ al\ Anniversary\ Instagram\ Post.png');"></div>
+                <div class="team-content">
+                    <h3>Mrs. Kaltumi Abdulazeez</h3>
+                    <p>Executive Director</p>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card hidden">
+                <div class="team-img" style="background-image: url('ladies\ al\ Anniversary\ Instagram\ Post.png');"></div>
+                <div class="team-content">
+                    <h3>Mr. Aivelli Timothy</h3>
+                    <p>Programme Manager</p>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="team-card hidden">
+                <div class="team-img" style="background-image: url('ladies\ al\ Anniversary\ Instagram\ Post.png');"></div>
+                <div class="team-content">
+                    <h3>Mrs. Hauwa Magaji</h3>
+                    <p>Finance Manager</p>
+                    <div class="socials">
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Added "See Team" button -->
+        <div class="btn-container">
+            <a href="#" class="section-button">See Full Team</a>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+        <video autoplay muted loop>
+            <source src="herosec.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <div class="video-content">
+                <h2>Our Impact in Communities</h2>
+                <p>Witness how LEGASI is transforming lives and building bridges of understanding across Nigeria. This video showcases our community dialogues, empowerment workshops, and the real stories of women whose lives have been changed through our initiatives.</p>
+                <a href="#" class="btn btn-primary">Join Our Movement</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Partners Section -->
+    <section class="partners-section">
+        <h2 class="partners-title">Our Trusted Partners</h2>
+        <div class="partners-container">
+            <div class="partner-logo">
+                <img src="partner1.jpeg" alt="USAID">
+            </div>
+            <div class="partner-logo">
+                <img src="partner2.jpeg" alt="World Bank">
+            </div>
+            <div class="partner-logo">
+                <img src="partner4.jpeg" alt="United Nations">
+            </div>
+            <div class="partner-logo">
+                <img src="partner6.jpeg" alt="Gates Foundation">
+            </div>
+            <div class="partner-logo">
+                <img src="partner7.jpeg" alt="UNDP">
+            </div>
+            <div class="partner-logo">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Ford_Foundation_logo.svg/1200px-Ford_Foundation_logo.svg.png" alt="Ford Foundation">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>LEGASI</h3>
+                <p>Promoting peaceful co-existence through community dialogue, advocacy, and socio-economic empowerment in Nigeria.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                    <li><a href="#activities"><i class="fas fa-chevron-right"></i> Our Activities</a></li>
+                    <li><a href="#blog"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                    <li><a href="#team"><i class="fas fa-chevron-right"></i> Our Team</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>What We Do</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Community Dialogue</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Trauma Counseling</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Economic Empowerment</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Interfaith Training</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Advocacy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i>Almara Centre - 22B, Kanta Road,
+off Independence Way, Kaduna North, NIGERIA</a> </li>
+                    <li><a href="#"><i class="fas fa-phone-alt"></i> +234 815 142 1551</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> info@legasi.org</a></li>
+                    <li><a href="#"><i class="fas fa-globe"></i> www.legasi.org</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2025 LEGASI - Ladies Empowerment Goals and Support Initiative. All Rights Reserved.</p>
+            <p>RC: 99840 | SCUML: 095957</p>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        const header = document.querySelector('.header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Scroll animation using Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.hidden').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Card hover effects
+        document.querySelectorAll('.values-card, .activity-card, .blog-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 25;
+                const angleX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-15px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        // FAQ Accordion Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Carousel Functionality
+        const carouselSlides = document.querySelector('.carousel-slides');
+        const carouselIndicators = document.querySelectorAll('.carousel-indicator');
+        const prevBtn = document.querySelector('.carousel-prev');
+        const nextBtn = document.querySelector('.carousel-next');
+        let currentSlide = 0;
+        const slideCount = document.querySelectorAll('.carousel-slide').length;
+        
+        // Update carousel indicators
+        function updateIndicators() {
+            carouselIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+        }
+        
+        // Go to specific slide
+        function goToSlide(index) {
+            currentSlide = (index + slideCount) % slideCount;
+            carouselSlides.style.transform = `translateX(-${currentSlide * 100}%)`;
+            updateIndicators();
+        }
+        
+        // Next slide
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+        }
+        
+        // Previous slide
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+        }
+        
+        // Auto play
+        let autoPlay = setInterval(nextSlide, 5000);
+        
+        // Pause auto play on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(autoPlay);
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            autoPlay = setInterval(nextSlide, 5000);
+        });
+        
+        // Event listeners
+        nextBtn.addEventListener('click', nextSlide);
+        prevBtn.addEventListener('click', prevSlide);
+        
+        // Indicator click events
+        carouselIndicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                goToSlide(index);
+            });
+        });
+        
+        // Mobile dropdown functionality
+        const dropdowns = document.querySelectorAll('.dropdown');
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        });
+        
+        // Login redirect
+        document.getElementById('loginBtn').addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>
